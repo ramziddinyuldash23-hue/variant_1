@@ -12,7 +12,7 @@ class lead_status(models.Model):
 
 class Client(models.Model):
     unique_id = models.AutoField(primary_key=True)
-    user = models.ForeignKey('user.User', on_delete=models.CASCADE)
+    user = models.ForeignKey('User', on_delete=models.CASCADE)
     order_count = models.IntegerField(default=0)
     return_products_count = models.IntegerField(default=0)
     tags = models.ManyToManyField(tags, blank=True)

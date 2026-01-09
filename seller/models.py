@@ -12,7 +12,7 @@ class Seller(models.Model):
 
 class Category(models.Model):
     unique_id = models.CharField(max_length=255, primary_key=True)
-    parent = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True, related_name="children")
+    parent = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True)
     name_uz = models.CharField(max_length=255)
     name_ru = models.CharField(max_length=255)
     name_en = models.CharField(max_length=255)
@@ -37,7 +37,7 @@ class Product(models.Model):
 class Kombo_products(models.Model):
     unique_id = models.CharField(max_length=255, blank=True, null=True)
     kombo_id = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True, blank=True)
-    product_id = models.ManyToManyField(Product, blank=True, null=True)
+    product_id = models.ManyToManyField(Product, blank=True, related_name='included_in_kombo')
     amount = models.IntegerField()
 
 class Seller_wallet_log(models.Model):
